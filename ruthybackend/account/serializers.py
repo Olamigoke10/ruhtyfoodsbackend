@@ -25,7 +25,7 @@ class SignupSerializer(serializers.ModelSerializer):
         validated_data.pop('confirm_password')
         user = CustomUser.objects.create_user(
             username=validated_data['username'],
-            email=validated_data['email'],
+            email=validated_data['email'].lower(),
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', ''),
             phone=validated_data['phone'],

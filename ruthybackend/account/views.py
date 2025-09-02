@@ -109,7 +109,7 @@ class ResetPasswordView(APIView):
     def post(self, request):
         serializer = ResetPasswordSerializer(data=request.data)
         if serializer.is_valid():
-            email = serializer.validated_data['email']
+            email = serializer.validated_data['email'].lower()
             otp = serializer.validated_data['otp']
             new_password = serializer.validated_data['new_password']
 
