@@ -8,10 +8,10 @@ class CategorySerializers(serializers.ModelSerializer):
         fields = ["id", "name"]
 
 
-class MenuItemSerializers(serializers.ModelSerializers):
+class MenuItemSerializers(serializers.ModelSerializer):
     
     category = CategorySerializers(read_only=True)
-    category_id = serializers.PrimarykeyRelatedField(
+    category_id = serializers.PrimaryKeyRelatedField(
         queryset = Category.objects.all(),
         source = "category",
         write_only = True,
