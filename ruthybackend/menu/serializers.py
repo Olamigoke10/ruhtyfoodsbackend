@@ -9,7 +9,21 @@ class CategorySerializers(serializers.ModelSerializer):
 
 
 class MenuItemSerializers(serializers.ModelSerializers):
+    
+    category = CategorySerializers(read_only=True)
+    category_id = serializers.PrimarykeyRelatedField(
+        queryset = Category.objects.all(),
+        source = "category",
+        write_only = True,
+    )
+    
     class Meta:
         model = MenuItem
-        fields = 
-
+        fields = [ "id",
+                  "name", 
+                  "price", 
+                  "description", 
+                  "image",
+                  "category",
+                  "category_id"
+                  ]
